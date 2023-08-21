@@ -218,8 +218,7 @@ get_garmin_data <- function(username, password, start_date, end_date, number_of_
   disp_json <- regmatches(disp_resp,
                           regexpr('{\"*.*\\"}', disp_resp, perl = TRUE))
   disp_new <- gsub('\\\\\"', '"', disp_json)
-  # as of 2020-12-28 this no longer works without the paste... used to work without..
-  display_preferences <- jsonlite::fromJSON(paste0(disp_new, "}"))
+  display_preferences <- jsonlite::fromJSON(disp_new)
   display_name <- display_preferences$displayName
 
 
